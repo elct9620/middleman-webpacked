@@ -36,7 +36,6 @@ module Middleman
 
       def webpack
         @presets = ['env']
-        @plugins = []
         @loaders = []
 
         enable_react if options[:react]
@@ -60,7 +59,6 @@ module Middleman
           'react-hot-loader'
         )
         @presets = ['env', 'react']
-        @plugins = ['react-hot-loader/babel']
         @loaders.push({
           test: /\.(js|jsx)$/,
           use: 'babel-loader'
