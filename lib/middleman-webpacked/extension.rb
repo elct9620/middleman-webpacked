@@ -3,7 +3,7 @@ require 'middleman-core'
 
 # Extension namespace
 module Middleman
-  class WebpackExtension < ::Middleman::Extension
+  class WebpackedExtension < ::Middleman::Extension
     option :source, '.webpack-cache', 'The webpack dist path'
     option :entry, {bundle: 'index.js'}, 'The entry points(s) of the compilation'
 

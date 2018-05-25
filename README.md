@@ -6,7 +6,7 @@ Middleman Webpack
 Add this line to your `Gemfile`
 
 ```ruby
-gem 'middleman-webpack', '~> 0.0.2'
+gem 'middleman-webpacked', '~> 0.0.2'
 ```
 
 Setup your Webpack
