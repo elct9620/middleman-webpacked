@@ -4,7 +4,8 @@ require 'middleman-core'
 # Extension namespace
 module Middleman
   class WebpackExtension < ::Middleman::Extension
-    option :source, '.tmp/dist', 'The webpack dist path'
+    option :source, '.webpack-cache', 'The webpack dist path'
+    option :entry, {bundle: 'index.js'}, 'The entry points(s) of the compilation'
 
     WEBPACK_DEV_SERVER_BIN = 'node_modules/.bin/webpack-dev-server'
     WEBPACK_BIN = 'node_modules/.bin/webpack'
@@ -33,13 +34,19 @@ module Middleman
       "#{WEBPACK_DEV_SERVER_BIN} --mode development " \
       '--module-bind js=babel-loader ' \
       '--hot --progress --color --inline --content-base source ' \
-      "--output-public-path /#{app.config[:js_dir]}"
+      "#{options.entry.map { |name, path| "--entry #{name}=./src/#{path}" }.join(' ')} " \
+      "--output-public-path /#{app.config[:js_dir]} "
     end
 
     def build_command
       "#{WEBPACK_BIN} --mode production " \
       '--module-bind js=babel-loader ' \
-      "--bail -p --output #{options.source}/#{app.config[:js_dir]}/main.js"
+      "#{options.entry.map { |name, path| "--entry #{name}=./src/#{path}" }.join(' ')} " \
+      "--bail -p --output-path #{options.source}/#{app.config[:js_dir]}"
+    end
+
+    def after_build
+      FileUtils.rm_rf(options.source)
     end
 
     helpers do
