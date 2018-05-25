@@ -26,10 +26,6 @@ module MiddlemanWebpacked
       @options = options
       @arguments = []
 
-      @loaders = {
-        js: 'babel'
-      }
-
       setup
     end
 
@@ -54,7 +50,6 @@ module MiddlemanWebpacked
         self.class.bin,
         "--mode #{self.class.mode}"
       ]
-        .concat(loaders)
         .concat(entries)
         .concat(@arguments)
         .join(' ')

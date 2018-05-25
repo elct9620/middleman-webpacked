@@ -10,7 +10,8 @@ module MiddlemanWebpacked
         '--color',
         '--inline',
         '--content-base source',
-        "--output-public-path /#{app.config[:js_dir]}"
+        "--output-public-path http://localhost:8080/#{app.config[:js_dir]}",
+        "--config #{app.root_path}/config/webpack/development.js"
       )
     end
   end

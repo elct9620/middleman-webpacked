@@ -1,0 +1,12 @@
+module.exports = {
+  module: {
+    rules: [
+      <%- @loaders.map do |loader| %>
+      {
+        test: <%= loader[:test].inspect %>,
+        use: "<%= loader[:use] %>"
+      }
+      <% end.join(',') %>
+    ]
+  }
+}

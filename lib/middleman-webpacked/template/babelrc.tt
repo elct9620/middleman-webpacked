@@ -1,0 +1,4 @@
+{
+  "presets": <%= @presets %>,
+  "plugins": <%= @plugins %>
+}

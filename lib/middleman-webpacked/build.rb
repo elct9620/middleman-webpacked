@@ -7,7 +7,8 @@ module MiddlemanWebpacked
       @arguments.push(
         '--bail',
         '-p',
-        "--output-path #{options.source}/#{app.config[:js_dir]}"
+        "--output-path #{options.source}/#{app.config[:js_dir]}",
+        "--config config/webpack/production.js"
       )
     end
   end
