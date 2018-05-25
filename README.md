@@ -6,19 +6,19 @@ Middleman Webpack
 Add this line to your `Gemfile`
 
 ```ruby
-gem 'middleman-webpack', '~> 0.0.1'
+gem 'middleman-webpack', '~> 0.0.2'
 ```
 
 Setup your Webpack
 
 ```ruby
-yarn add webpack webpack-dev-server webpack-cli --dev
+middleman webpack
 ```
 
 Add `javascript_pack_tag` to your layout
 
 ```erb
-<%= javascript_pack_tag 'main' %>
+<%= javascript_pack_tag 'bundle' %>
 ```
 
 Activate the extension in `config.rb`
@@ -31,10 +31,24 @@ Put the javascript into `src` directory
 
 > This version only support Webpack 4 default config
 
+## Options
+
+### Entry
+
+If you want to output more than one file (`bundle.js`) you can specify the entry options.
+
+```ruby
+activate :webpack,
+         entry: {
+           app: 'index.js',
+           ext: 'ext.js'
+         }
+```
+
 ## Roadmap
 
 * [x] Running Webpack without config
 * [ ] Automatic setup `webpack.config.js`
-* [ ] Babel Support
+* [x] Babel Support
 * [ ] React.js Support
 * [ ] Vue.js Support
