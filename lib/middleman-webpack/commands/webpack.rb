@@ -8,7 +8,7 @@ module Middleman
       check_unknown_options!
 
       def webpack
-        run 'yarn add webpack webpack-dev-server webpack-cli --dev'
+        run 'yarn add webpack webpack-dev-server webpack-cli babel-loader --dev'
       end
 
       # Add to CLI

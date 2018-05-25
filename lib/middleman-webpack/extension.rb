@@ -2,8 +2,8 @@
 require 'middleman-core'
 
 # Extension namespace
-module MiddlemanWebpack
-  class Extension < ::Middleman::Extension
+module Middleman
+  class WebpackExtension < ::Middleman::Extension
     option :source, '.tmp/dist', 'The webpack dist path'
 
     WEBPACK_DEV_SERVER_BIN = 'node_modules/.bin/webpack-dev-server'
@@ -30,13 +30,15 @@ module MiddlemanWebpack
 
     def command
       return build_command if app.build?
-      'node_modules/.bin/webpack-dev-server --mode development ' \
+      "#{WEBPACK_DEV_SERVER_BIN} --mode development " \
+      '--module-bind js=babel-loader ' \
       '--hot --progress --color --inline --content-base source ' \
       "--output-public-path /#{app.config[:js_dir]}"
     end
 
     def build_command
-      "node_modules/.bin/webpack --mode production " \
+      "#{WEBPACK_BIN} --mode production " \
+      '--module-bind js=babel-loader ' \
       "--bail -p --output #{options.source}/#{app.config[:js_dir]}/main.js"
     end
 
