@@ -1,4 +1,4 @@
-Middleman Webpack
+Middleman Webpacked
 ===
 
 ## Usage
@@ -14,6 +14,8 @@ Setup your Webpack
 ```ruby
 middleman webpack
 ```
+
+> To enable React.js, add `--react` options when setup Webpack
 
 Add `javascript_pack_tag` to your layout
 
@@ -50,5 +52,6 @@ activate :webpack,
 * [x] Running Webpack without config
 * [ ] Automatic setup `webpack.config.js`
 * [x] Babel Support
-* [ ] React.js Support
+* [x] React.js Support
 * [ ] Vue.js Support
+* [ ] Sass Support
