@@ -1,12 +1,17 @@
+<% if options[:vue] %>const { VueLoaderPlugin } = require('vue-loader')<% end %>
+
 module.exports = {
   module: {
     rules: [
-      <%- @loaders.map do |loader| %>
+      <%- @loaders.each_with_index do |loader, index| %>
       {
         test: <%= loader[:test].inspect %>,
-        use: "<%= loader[:use] %>"
-      }
-      <% end.join(',') %>
+        use: "<%= loader[:use] %>",
+      },
+      <% end %>
     ]
-  }
+  },
+  plugins: [
+    <% if options[:vue] %>new VueLoaderPlugin(),<% end %>
+  ]
 }

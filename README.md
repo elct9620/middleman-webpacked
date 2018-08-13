@@ -16,6 +16,7 @@ middleman webpack
 ```
 
 > To enable React.js, add `--react` options when setup Webpack
+> To enable Vue.js, add `--vue` options when setup Webpack
 
 Add `javascript_pack_tag` to your layout
 
@@ -53,5 +54,10 @@ activate :webpack,
 * [ ] Automatic setup `webpack.config.js`
 * [x] Babel Support
 * [x] React.js Support
+  * [x] Can be enabled
+  * [ ] Support to generate css file
 * [ ] Vue.js Support
+  * [x] Can be enabled
+  * [x] Support template and `.vue` file
+  * [ ] Support to generate css file
 * [ ] Sass Support

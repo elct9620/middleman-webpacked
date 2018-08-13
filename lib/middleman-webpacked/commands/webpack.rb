@@ -17,6 +17,11 @@ module Middleman
         default: false,
         desc: 'Add react support'
 
+      class_option 'vue',
+        type: :boolean,
+        default: false,
+        desc: 'Add vue support'
+
       def self.source_root
         File.expand_path('../../template', __FILE__)
       end
@@ -36,9 +41,11 @@ module Middleman
 
       def webpack
         @presets = ['env']
+        @plugins = []
         @loaders = []
 
         enable_react if options[:react]
+        enable_vue if options[:vue]
 
         generate_config
         run "yarn add #{@packages.join(' ')} --dev"
@@ -61,6 +68,23 @@ module Middleman
         @presets = ['env', 'react']
         @loaders.push({
           test: /\.(js|jsx)$/,
+          use: 'babel-loader'
+        })
+      end
+
+      def enable_vue
+        @packages.push(
+          'vue',
+          'babel-preset-es2015',
+          'vue-loader',
+          'vue-template-compiler'
+        )
+        @presets = ['env', 'es2015']
+        @loaders.push({
+          test: /\.vue$/,
+          use: 'vue-loader',
+        },{
+          test: /\.js$/,
           use: 'babel-loader'
         })
       end
